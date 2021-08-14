@@ -119,6 +119,9 @@
                         <viewLayoutGuide key="safeArea" id="ZlH-GS-V2d"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="instructions" destination="o0C-So-RYP" id="69k-96-oLT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJr-3W-41G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
