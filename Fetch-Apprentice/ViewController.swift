@@ -16,7 +16,7 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataProvider.getResults(query: urlString) { [weak self] result in
+        dataProvider.getCategoryResults(query: urlString) { [weak self] result in
             switch result {
             case .success(let results):
                 self?.categories = results.categories.sorted { $0.strCategory.lowercased() < $1.strCategory.lowercased() }
@@ -51,18 +51,18 @@ class TableViewController: UITableViewController {
         
         let singleCategory = categories[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MealCategory", for: indexPath)
-//        cell.event = singleEvent
         cell.textLabel?.text = singleCategory.strCategory
         
         return cell
     }
      
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
-//            vc.detailItem = events[indexPath.row]
-//            navigationController?.pushViewController(vc, animated: true)
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "MealsInCategory") as? MealCollectionViewController {
+            let selectedCategory = categories[indexPath.row]
+            vc.detailItem = selectedCategory
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
 }
 
