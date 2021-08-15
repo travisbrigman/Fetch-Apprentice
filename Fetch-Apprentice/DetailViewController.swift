@@ -11,12 +11,39 @@ class DetailViewController: UIViewController {
     let dataProvider = Provider()
     var detailItem: Meal?
     let urlBase = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
-    var mealRecipe = [MealRecipe]()
+    var mealRecipe: MealRecipe?
     @IBOutlet weak var instructions: UILabel!
     
       
     func loadDataIntoView() {
-        instructions.text = mealRecipe[0].strInstructions
+        guard let mealRecipe = mealRecipe else { return }
+        DispatchQueue.main.async {
+            self.instructions.text = mealRecipe.strInstructions
+        }
+    }
+    
+    func getIngredients() {
+        guard let mealRecipe = mealRecipe else { return }
+        let mirror = Mirror(reflecting: mealRecipe)
+        var foundIngredients = [(ingredient: String, measurement: String)]()
+        
+        for case let (label?, value) in mirror
+            .children.map({ ($0.label, $0.value) }) {
+//            print("label: \(label), value: \(value)")
+            if label.hasPrefix("strIngredient") {
+                foundIngredients.append(value as! (ingredient: String, String))
+            }
+            if label.hasPrefix("strMeasure") {
+                
+            }
+        }
+        
+        for (index, item) in foundIngredients.enumerated().reversed() {
+            if item.0 == "" {
+                foundIngredients.remove(at: index)
+            }
+        }
+        print(foundIngredients)
     }
     
     
@@ -28,12 +55,9 @@ class DetailViewController: UIViewController {
         dataProvider.getMealRecipe(query: urlString) { [weak self] result in
             switch result {
             case .success(let results):
-                self?.mealRecipe = results.meals
+                self?.mealRecipe = results.meals[0]
                 self?.loadDataIntoView()
-//                DispatchQueue.main.async {
-//                    self?.view.reloadData()
-//                }
-                
+                self?.getIngredients()
                 
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -44,6 +68,8 @@ class DetailViewController: UIViewController {
                 print(error)
             }
         }
+        
+        
     }
     
     

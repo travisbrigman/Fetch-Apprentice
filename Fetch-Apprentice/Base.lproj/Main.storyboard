@@ -73,8 +73,8 @@
                                             <rect key="frame" x="10" y="10" width="120" height="120"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MealName" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkV-9U-iqT">
-                                            <rect key="frame" x="10" y="132" width="120" height="40"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MealName" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="MkV-9U-iqT">
+                                            <rect key="frame" x="10" y="132" width="120" height="48"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -108,9 +108,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0C-So-RYP">
-                                <rect key="frame" x="186" y="438" width="39" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o0C-So-RYP">
+                                <rect key="frame" x="20" y="44" width="374" height="422"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -118,6 +117,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZlH-GS-V2d"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="o0C-So-RYP" firstAttribute="leading" secondItem="uvW-ij-4H9" secondAttribute="leadingMargin" id="UQ7-83-oCs"/>
+                            <constraint firstItem="ZlH-GS-V2d" firstAttribute="bottom" secondItem="o0C-So-RYP" secondAttribute="bottom" constant="396" id="Uze-od-Q68"/>
+                            <constraint firstItem="o0C-So-RYP" firstAttribute="trailing" secondItem="uvW-ij-4H9" secondAttribute="trailingMargin" id="hs1-Kq-MYr"/>
+                            <constraint firstItem="o0C-So-RYP" firstAttribute="top" secondItem="ZlH-GS-V2d" secondAttribute="top" id="wQu-Ek-7ca"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="instructions" destination="o0C-So-RYP" id="69k-96-oLT"/>
@@ -125,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJr-3W-41G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3747" y="65"/>
+            <point key="canvasLocation" x="3746.376811594203" y="64.955357142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x1U-Mn-7zo">
