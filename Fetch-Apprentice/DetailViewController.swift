@@ -25,25 +25,30 @@ class DetailViewController: UIViewController {
     func getIngredients() {
         guard let mealRecipe = mealRecipe else { return }
         let mirror = Mirror(reflecting: mealRecipe)
-        var foundIngredients = [(ingredient: String, measurement: String)]()
+        var foundIngredients = [String]()
+        var foundMeasurements = [String]()
         
         for case let (label?, value) in mirror
             .children.map({ ($0.label, $0.value) }) {
 //            print("label: \(label), value: \(value)")
             if label.hasPrefix("strIngredient") {
-                foundIngredients.append(value as! (ingredient: String, String))
+                foundIngredients.append(value as! String)
             }
             if label.hasPrefix("strMeasure") {
+                if value != nil || value as! String != " " {
+                    foundMeasurements.append(value as! String)
+                }
                 
             }
         }
         
         for (index, item) in foundIngredients.enumerated().reversed() {
-            if item.0 == "" {
+            if item == "" {
                 foundIngredients.remove(at: index)
             }
         }
         print(foundIngredients)
+        print(foundMeasurements)
     }
     
     
