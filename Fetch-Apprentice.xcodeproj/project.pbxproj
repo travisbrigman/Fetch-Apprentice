@@ -92,6 +92,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F0EE09F26CC179C00787536 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F697BDA26C6F6DA00DF7FF6 /* Meal.swift */,
+				0F697BF026C7D66500DF7FF6 /* MealRecipe.swift */,
+				0F697BCA26C6CD6B00DF7FF6 /* MealCategory.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0F0EE0A026CC17D000787536 /* Boilerplate */ = {
+			isa = PBXGroup;
+			children = (
+				0F697B9226C6CBB400DF7FF6 /* AppDelegate.swift */,
+				0F697B9426C6CBB400DF7FF6 /* SceneDelegate.swift */,
+			);
+			path = Boilerplate;
+			sourceTree = "<group>";
+		};
+		0F0EE0A726CC185000787536 /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				0F697BC526C6CCD100DF7FF6 /* Provider.swift */,
+				0F697BCF26C6CE1700DF7FF6 /* ErrorMessage.swift */,
+			);
+			path = DataProvider;
+			sourceTree = "<group>";
+		};
 		0F697B8626C6CBB300DF7FF6 = {
 			isa = PBXGroup;
 			children = (
@@ -115,17 +143,13 @@
 		0F697B9126C6CBB400DF7FF6 /* Fetch-Apprentice */ = {
 			isa = PBXGroup;
 			children = (
-				0F697BDA26C6F6DA00DF7FF6 /* Meal.swift */,
-				0F697BF026C7D66500DF7FF6 /* MealRecipe.swift */,
-				0F697BCA26C6CD6B00DF7FF6 /* MealCategory.swift */,
-				0F697BE826C7D13600DF7FF6 /* DetailViewController.swift */,
-				0F697B9226C6CBB400DF7FF6 /* AppDelegate.swift */,
-				0F697BD526C6F26C00DF7FF6 /* MealCollectionViewController.swift */,
-				0F697BDF26C6FC7700DF7FF6 /* MealPictureCell.swift */,
-				0F697B9426C6CBB400DF7FF6 /* SceneDelegate.swift */,
+				0F0EE09F26CC179C00787536 /* Models */,
+				0F0EE0A026CC17D000787536 /* Boilerplate */,
+				0F0EE0A726CC185000787536 /* DataProvider */,
 				0F697B9626C6CBB400DF7FF6 /* ViewController.swift */,
-				0F697BC526C6CCD100DF7FF6 /* Provider.swift */,
-				0F697BCF26C6CE1700DF7FF6 /* ErrorMessage.swift */,
+				0F697BD526C6F26C00DF7FF6 /* MealCollectionViewController.swift */,
+				0F697BE826C7D13600DF7FF6 /* DetailViewController.swift */,
+				0F697BDF26C6FC7700DF7FF6 /* MealPictureCell.swift */,
 				0F697B9826C6CBB400DF7FF6 /* Main.storyboard */,
 				0F697B9B26C6CBB600DF7FF6 /* Assets.xcassets */,
 				0F697B9D26C6CBB600DF7FF6 /* LaunchScreen.storyboard */,

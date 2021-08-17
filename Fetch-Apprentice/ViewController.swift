@@ -15,6 +15,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Meal Categories"
         dataProvider.getCategoryResults(query: urlString) { [weak self] result in
             switch result {
             case .success(let results):
