@@ -114,17 +114,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="se5-jl-gBX">
+                                <rect key="frame" x="20" y="458" width="374" height="404"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZlH-GS-V2d"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="se5-jl-gBX" firstAttribute="top" secondItem="ZlH-GS-V2d" secondAttribute="top" constant="414" id="3QD-7p-nfV"/>
+                            <constraint firstItem="se5-jl-gBX" firstAttribute="trailing" secondItem="o0C-So-RYP" secondAttribute="trailing" id="QEZ-iQ-4cC"/>
                             <constraint firstItem="o0C-So-RYP" firstAttribute="leading" secondItem="uvW-ij-4H9" secondAttribute="leadingMargin" id="UQ7-83-oCs"/>
                             <constraint firstItem="ZlH-GS-V2d" firstAttribute="bottom" secondItem="o0C-So-RYP" secondAttribute="bottom" constant="396" id="Uze-od-Q68"/>
                             <constraint firstItem="o0C-So-RYP" firstAttribute="trailing" secondItem="uvW-ij-4H9" secondAttribute="trailingMargin" id="hs1-Kq-MYr"/>
+                            <constraint firstItem="se5-jl-gBX" firstAttribute="leading" secondItem="o0C-So-RYP" secondAttribute="leading" id="jnt-La-UYi"/>
+                            <constraint firstItem="se5-jl-gBX" firstAttribute="bottom" secondItem="ZlH-GS-V2d" secondAttribute="bottom" id="v9S-cL-ijY"/>
                             <constraint firstItem="o0C-So-RYP" firstAttribute="top" secondItem="ZlH-GS-V2d" secondAttribute="top" id="wQu-Ek-7ca"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="IngredientTable" destination="se5-jl-gBX" id="6fn-ai-8DB"/>
                         <outlet property="instructions" destination="o0C-So-RYP" id="69k-96-oLT"/>
                     </connections>
                 </viewController>
