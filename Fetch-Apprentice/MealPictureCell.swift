@@ -8,7 +8,6 @@
 import UIKit
 
 class MealPictureCell: UICollectionViewCell {
-    
     @IBOutlet var mealImage: UIImageView!
     @IBOutlet var mealName: UILabel!
 }

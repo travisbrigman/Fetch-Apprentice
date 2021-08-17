@@ -8,18 +8,16 @@
 import UIKit
 
 class DetailViewController: UIViewController, UITableViewDelegate {
-    
     let dataProvider = Provider()
     var detailItem: Meal?
     let urlBase = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
     var mealRecipe: MealRecipe?
     @IBOutlet var ingredientTable: UITableView!
-    @IBOutlet var instructions: UILabel!
+    @IBOutlet var instructions: UITextView!
     
     var ingredientNames = [String]()
     var ingredientMeasurements = [String]()
 
-    
     func loadDataIntoView() {
         guard let mealRecipe = mealRecipe else { return }
         DispatchQueue.main.async {
@@ -34,8 +32,9 @@ class DetailViewController: UIViewController, UITableViewDelegate {
         var foundIngredients = [String?]()
         var foundMeasurements = [String?]()
 
-        for case let (label?, value?) in mirror
-            .children.map({ ($0.label, $0.value) }) {
+        for case (let label?, let value?) in mirror
+            .children.map({ ($0.label, $0.value) })
+        {
             if label.hasPrefix("strIngredient") {
                 foundIngredients.append(value as? String)
             }
@@ -43,19 +42,19 @@ class DetailViewController: UIViewController, UITableViewDelegate {
                 foundMeasurements.append(value as? String)
             }
         }
-        var stringIngredients = foundIngredients.compactMap{ $0 }
+        var stringIngredients = foundIngredients.compactMap { $0 }
         
         for (index, item) in stringIngredients.enumerated().reversed() {
             if item.isEmpty {
                 stringIngredients.remove(at: index)
             }
         }
-        var stringMeasurements = foundMeasurements.compactMap{ $0 }
+        var stringMeasurements = foundMeasurements.compactMap { $0 }
         
         for (index, item) in stringMeasurements.enumerated().reversed() {
-                if item.isEmpty {
-                    stringMeasurements.remove(at: index)
-                }
+            if item.isEmpty {
+                stringMeasurements.remove(at: index)
+            }
         }
         ingredientNames = stringIngredients
         ingredientMeasurements = stringMeasurements
@@ -85,7 +84,6 @@ class DetailViewController: UIViewController, UITableViewDelegate {
             }
         }
     }
-    
 }
 
 extension DetailViewController: UITableViewDataSource {

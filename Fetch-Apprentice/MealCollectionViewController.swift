@@ -16,23 +16,21 @@ class MealCollectionViewController: UICollectionViewController {
     let urlBase = "https://www.themealdb.com/api/json/v1/1/filter.php?c="
     var mealsInCategory = [Meal]()
 
-    
     override func viewDidLoad() {
         navigationController?.navigationBar.prefersLargeTitles = true
         super.viewDidLoad()
-        title = categoryName
+        title = detailItem?.strCategory
         
         let urlString = urlBase + detailItem!.strCategory
         
         dataProvider.getMealsInCategoryResults(query: urlString) { [weak self] result in
             switch result {
             case .success(let results):
-                self?.mealsInCategory = results.meals
+                self?.mealsInCategory = results.meals.sorted { $0.strMeal.lowercased() < $1.strMeal.lowercased() }
                
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                 }
-                
                 
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -67,19 +65,18 @@ class MealCollectionViewController: UICollectionViewController {
         return cell
     }
   
-     func fetchImage(photoURL: String?) -> UIImage {
-         guard let imageURL = URL(string: photoURL ?? "no URL found") else { return
-             UIImage()
-         }
+    func fetchImage(photoURL: String?) -> UIImage {
+        guard let imageURL = URL(string: photoURL ?? "no URL found") else { return
+            UIImage()
+        }
          
-         let imageData: Data = try! Data(contentsOf: imageURL)
+        let imageData: Data = try! Data(contentsOf: imageURL)
          
-         guard let image = UIImage(data: imageData) else { return UIImage() }
+        guard let image = UIImage(data: imageData) else { return UIImage() }
          
-         return image
-     }
+        return image
+    }
  
-
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let singleMeal = mealsInCategory[indexPath.item]
         
@@ -88,7 +85,4 @@ class MealCollectionViewController: UICollectionViewController {
             vc.detailItem = singleMeal
         }
     }
-    
-
-
 }

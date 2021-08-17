@@ -8,11 +8,13 @@
 import Foundation
 
 // MARK: - Meals
+
 struct Meals: Codable {
     let meals: [Meal]
 }
 
 // MARK: - Meal
+
 struct Meal: Codable {
     let strMeal: String
     let strMealThumb: String

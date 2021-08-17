@@ -24,7 +24,7 @@ extension MealRecipe {
         let imageURL = try container.decodeIfPresent(String.self, forKey: .strMealThumb)
         let tags = try container.decodeIfPresent(String.self, forKey: .strTags)
         let youTubeLink = try container.decodeIfPresent(String.self, forKey: .strYoutube)
-        
+
         let ingredient1 = try container.decodeIfPresent(String.self, forKey: .strIngredient1)
         let ingredient2 = try container.decodeIfPresent(String.self, forKey: .strIngredient2)
         let ingredient3 = try container.decodeIfPresent(String.self, forKey: .strIngredient3)
@@ -118,14 +118,14 @@ extension MealRecipe {
                   strMeasure19: measurement19,
                   strMeasure20: measurement20)
     }
-    
-    var asDictionary : [String:Any] {
-      let mirror = Mirror(reflecting: self)
-      let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?, value:Any) -> (String, Any)? in
-        guard let label = label else { return nil }
-        return (label, value)
-      }).compactMap { $0 })
-      return dict
+
+    var asDictionary: [String: Any] {
+        let mirror = Mirror(reflecting: self)
+        let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map { (label: String?, value: Any) -> (String, Any)? in
+            guard let label = label else { return nil }
+            return (label, value)
+        }.compactMap { $0 })
+        return dict
     }
 }
 

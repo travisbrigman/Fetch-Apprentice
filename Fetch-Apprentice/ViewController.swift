@@ -13,7 +13,6 @@ class TableViewController: UITableViewController {
     let dataProvider = Provider()
     var categories = [MealCategory]()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         dataProvider.getCategoryResults(query: urlString) { [weak self] result in
@@ -21,11 +20,9 @@ class TableViewController: UITableViewController {
             case .success(let results):
                 self?.categories = results.categories.sorted { $0.strCategory.lowercased() < $1.strCategory.lowercased() }
                
-                
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
-                
                 
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -38,17 +35,13 @@ class TableViewController: UITableViewController {
         }
     }
 
-    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return categories.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let singleCategory = categories[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MealCategory", for: indexPath)
         cell.textLabel?.text = singleCategory.strCategory
@@ -63,6 +56,4 @@ class TableViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-
 }
-

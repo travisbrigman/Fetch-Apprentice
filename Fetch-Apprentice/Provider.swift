@@ -7,13 +7,11 @@
 
 import Foundation
 
-class Provider {    
-    
+class Provider {
     func getCategoryResults(query: String, completed: @escaping (Result<Categories, ErrorMessage>) -> Void) {
-        
         guard let url = URL(string: query) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             if let _ = error {
                 completed(.failure(.invalidData))
@@ -38,16 +36,14 @@ class Provider {
             } catch {
                 completed(.failure(.invalidData))
             }
-            
         }
         task.resume()
     }
     
     func getMealsInCategoryResults(query: String, completed: @escaping (Result<Meals, ErrorMessage>) -> Void) {
-        
         guard let url = URL(string: query) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             if let _ = error {
                 completed(.failure(.invalidData))
@@ -72,16 +68,14 @@ class Provider {
             } catch {
                 completed(.failure(.invalidData))
             }
-            
         }
         task.resume()
     }
     
     func getMealRecipe(query: String, completed: @escaping (Result<SingleMeal, ErrorMessage>) -> Void) {
-        
         guard let url = URL(string: query) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             if let _ = error {
                 completed(.failure(.invalidData))
@@ -106,9 +100,7 @@ class Provider {
             } catch {
                 completed(.failure(.invalidData))
             }
-            
         }
         task.resume()
     }
 }
-
