@@ -7,32 +7,24 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foundIngredients.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let singleIngredient = foundIngredients[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellId", for: indexPath)
-        cell.textLabel?.text = singleIngredient
-        
-        return cell
-    }
+class DetailViewController: UIViewController, UITableViewDelegate {
     
     let dataProvider = Provider()
     var detailItem: Meal?
     let urlBase = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
     var mealRecipe: MealRecipe?
-    @IBOutlet var IngredientTable: UITableView!
+    @IBOutlet var ingredientTable: UITableView!
     @IBOutlet var instructions: UILabel!
-    var foundIngredients = [String]()
-    var foundMeasurements = [String]()
+    
+    var ingredientNames = [String]()
+    var ingredientMeasurements = [String]()
+
     
     func loadDataIntoView() {
         guard let mealRecipe = mealRecipe else { return }
         DispatchQueue.main.async {
             self.instructions.text = mealRecipe.strInstructions
+            self.ingredientTable.reloadData()
         }
     }
     
@@ -44,7 +36,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
 
         for case let (label?, value?) in mirror
             .children.map({ ($0.label, $0.value) }) {
-//            print("label: \(label), value: \(value)")
             if label.hasPrefix("strIngredient") {
                 foundIngredients.append(value as? String)
             }
@@ -65,18 +56,17 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 if item.isEmpty {
                     stringMeasurements.remove(at: index)
                 }
-            
-  
         }
-        print(stringIngredients)
-        print(stringMeasurements)
+        ingredientNames = stringIngredients
+        ingredientMeasurements = stringMeasurements
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        IngredientTable.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         guard let detailItem = detailItem else { return }
         let urlString = urlBase + detailItem.idMeal
+        title = detailItem.strMeal
+        ingredientTable.dataSource = self
         
         dataProvider.getMealRecipe(query: urlString) { [weak self] result in
             switch result {
@@ -94,17 +84,22 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 print(error)
             }
         }
-        IngredientTable.delegate = self
-        IngredientTable.dataSource = self
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+}
+
+extension DetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ingredientNames.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let singleIngredientName = ingredientNames[indexPath.row]
+        let singleIngredientMeasurement = ingredientMeasurements[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
+        cell.textLabel?.text = singleIngredientName
+        cell.detailTextLabel?.text = singleIngredientMeasurement
+        
+        return cell
+    }
 }
