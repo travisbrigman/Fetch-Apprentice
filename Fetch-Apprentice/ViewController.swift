@@ -12,11 +12,13 @@ class TableViewController: UITableViewController {
     
     let dataProvider = Provider()
     var categories = [MealCategory]()
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Meal Categories"
         dataProvider.getCategoryResults(query: urlString) { [weak self] result in
+            
             switch result {
             case .success(let results):
                 self?.categories = results.categories.sorted { $0.strCategory.lowercased() < $1.strCategory.lowercased() }
